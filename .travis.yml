@@ -1,0 +1,35 @@
+sudo: required
+
+addons:
+  chrome: stable
+
+matrix:
+  include:
+  - os: linux
+    language: python
+    python: 2.7
+    services:
+    - rabbitmq
+    - memcached
+    - postgresql
+  - os: linux
+    language: python
+    python: 3.5
+    services:
+    - rabbitmq
+    - memcached
+    - postgresql
+
+# command to run tests
+script:
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+        which python;
+        which pip;
+        which python2;
+        which pip2;
+    elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        which python;
+        which pip;
+        which python3;
+        which pip3;
+    fi
