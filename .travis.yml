@@ -27,9 +27,17 @@ script:
         which pip;
         which python2;
         which pip2;
+        python --version;
+        pip --version;
+        python2 --version;
+        pip2 --version;
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         which python;
         which pip;
         which python3;
         which pip3;
+        python --version;
+        pip --version;
+        python3 --version;
+        pip3 --version;
     fi
