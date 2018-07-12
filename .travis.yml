@@ -19,9 +19,26 @@ matrix:
     - rabbitmq
     - memcached
     - postgresql
+  - os: osx
 
 # command to run tests
 script:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew outdated pyenv || brew upgrade pyenv;
+        brew install pyenv-virtualenv;
+        pyenv versions;
+        pyenv install 3.5.0;
+        export PYENV_VERSION=3.5.0;
+        export PATH="/Users/travis/.pyenv/shims:${PATH}";
+        pyenv versions;
+        pyenv-virtualenv venv;
+        source venv/bin/activate;
+        pyenv versions;
+        python -V;
+        python3 -V;
+        pip -V;
+        pip3 -V;
+    fi
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
         which python;
         which pip;
